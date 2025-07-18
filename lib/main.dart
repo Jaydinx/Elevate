@@ -72,6 +72,14 @@ class ElevateApp extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: Colors.grey,
                               border: Border.all(color: Colors.black, width: 1),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 10,
+                                  offset: Offset(0, 4), // soft drop shadow
+                                ),
+                              ],
                             ),
                             child: Center(child: Text('Calories')),
                           ),
