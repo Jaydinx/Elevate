@@ -7,6 +7,24 @@ void main() {
 class ElevateApp extends StatelessWidget {
   const ElevateApp({super.key});
 
+  Widget navItem(IconData icon, String label) {
+    return GestureDetector(
+      onTap: () {
+        // Add navigation or state update logic here
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 24, color: Colors.black),
+            Text(label, style: TextStyle(fontSize: 12, color: Colors.black)),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,21 +39,23 @@ class ElevateApp extends StatelessWidget {
           backgroundColor: Colors.black,
           title: const Text('ELEVATE', style: TextStyle(color: Colors.white)),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.mediation_outlined), // meditation icon
-              label: 'Meditate',
+        bottomNavigationBar: Container(
+          color: Colors.white,
+          height: 60,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                navItem(Icons.home, "Home"),
+                navItem(Icons.fitness_center, "Workouts"),
+                navItem(Icons.fastfood, "Meals"),
+                navItem(Icons.mood, "Mindset"),
+                navItem(Icons.calendar_today, "Planner"),
+                navItem(Icons.settings, "Settings"),
+                navItem(Icons.person, "Profile"),
+              ],
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.coffee),
-              label: 'Caffeine Intake',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_2_rounded),
-              label: 'Addiction',
-            ),
-          ],
+          ),
         ),
         body: Column(
           children: [
@@ -49,13 +69,19 @@ class ElevateApp extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Container(
-                            color: Colors.orange,
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              border: Border.all(color: Colors.black, width: 1),
+                            ),
                             child: Center(child: Text('Calories')),
                           ),
                         ),
                         Expanded(
                           child: Container(
-                            color: Colors.green,
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              border: Border.all(color: Colors.black, width: 1),
+                            ),
                             child: Center(child: Text('Water Intake')),
                           ),
                         ),
@@ -65,7 +91,10 @@ class ElevateApp extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Container(
-                      color: Colors.blue,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        border: Border.all(color: Colors.black, width: 1),
+                      ),
                       child: Center(child: Text('Meal Plan')),
                     ),
                   ),
@@ -74,10 +103,19 @@ class ElevateApp extends StatelessWidget {
             ),
             Container(
               height: 100,
-              color: Colors.red,
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                border: Border.all(color: Colors.black, width: 1),
+              ),
               child: Center(child: Text('Daily Quote')),
             ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            print("Button has been pressed");
+          },
+          child: Icon(Icons.food_bank),
         ),
       ),
     );
